@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Ankit Shah</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Custom Navbar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 1rem 0;
+        }
+        .navbar-brand { font-weight: 700; font-size: 1.5rem; color: var(--dark) !important; }
+
+        /* --- Responsive Hero --- */
+        .contact-hero {
+            position: relative;
+            padding: 140px 0 100px;
+            color: white;
+            text-align: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* --- Premium Card Layout --- */
+        .contact-wrapper {
+            margin-top: -60px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        /* Left Side: Dark Info */
+        .info-side {
+            background: var(--dark);
+            color: white;
+            padding: 3.5rem;
+            height: 100%;
+            background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Right Side: Form */
+        .form-side { padding: 3.5rem; }
+
+        /* --- Inputs & Buttons --- */
+        .form-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 8px; }
+        
+        .form-control, .form-select {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #fcfcfc;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+        }
+
+        .btn-send {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            color: white;
+        }
+
+        /* --- Contact Icons --- */
+        .contact-item { display: flex; align-items: center; margin-bottom: 25px; }
+        .icon-box {
+            min-width: 45px; height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px; color: var(--primary);
+        }
+
+        /* --- Mobile Responsive Fixes --- */
+        @media (max-width: 991.98px) {
+            .info-side { padding: 3rem 2rem; }
+            .form-side { padding: 3rem 2rem; }
+            .contact-hero { padding: 120px 0 80px; }
+            .display-3 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            .contact-wrapper { margin-top: -30px; }
+            .info-side { padding: 2.5rem 1.5rem; }
+            .form-side { padding: 2.5rem 1.5rem; }
+            .navbar-brand { font-size: 1.2rem; }
+        }
+
+        /* Animation */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out forwards; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark) !important;
+        }
+
+        .nav-link {
+            color: var(--dark) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .footer-premium {
+            padding: 80px 0 40px;
+            background-color: #0f172a;
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 1)), 
+                              url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); 
+            position: relative;
+        }
+
+        .footer-text { color: #94a3b8 !important; line-height: 1.8; }
+        .footer-links a { color: #94a3b8; text-decoration: none; transition: all 0.3s ease; }
+        .footer-links a:hover { color: #3b82f6; padding-left: 5px; }
+
+        .social-links a {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; transition: 0.3s;
+        }
+
+        .social-links a:hover { background: #3b82f6; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+    <!-- <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ANKIT SHAH</a>
+            <a href="index.html" class="btn btn-sm btn-outline-dark rounded-pill px-4">Back</a>
+        </div>
+    </nav> -->
+     <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Ankit Shah</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contact-hero">
+        <div class="container fade-up">
+            <h1 class="display-3 fw-bold mb-3">Get In Touch</h1>
+            <p class="lead opacity-75">Let’s build something amazing together.</p>
+        </div>
+    </section>
+
+    <div class="container contact-wrapper">
+        <div class="contact-card fade-up">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    <div class="info-side">
+                        <h3 class="mb-4">Contact Info</h3>
+                        <div class="contact-item">
+                            <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <small class="text-white-50 d-block">Email</small>
+                                <span>ankitshah.design@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                            <div>
+                                <small class="text-white-50 d-block">WhatsApp</small>
+                                <span>+91 9328754187</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <small class="text-white-50 d-block">Location</small>
+                                <span>Gujarat, India</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-top border-secondary">
+                            <div class="d-flex gap-3">
+                                <a href="#" class="text-white opacity-50 fs-5"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-white opacity-50 fs-5"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-white opacity-50 fs-5"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-side" id="form-container">
+                        <h3 class="mb-4">Send Message</h3>
+                        <form action="https://formspree.io/f/xqekjjqq" method="POST" id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="John" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john@mail.com" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <select name="subject" class="form-select">
+                                        <option>Web Design Project</option>
+                                        <option>UI/UX Design</option>
+                                        <option>Full-stack Development</option>
+                                        <option>Other Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <label class="form-label">Message</label>
+                                    <textarea name="message" class="form-control" rows="4" placeholder="Your vision..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" id="btn-text" class="btn-send">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <footer class="py-4 text-center text-muted small">
+        &copy; 2025 Ankit Shah. All rights reserved.
+    </footer> -->
+     <footer class="footer-premium">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <h4 class="mb-4 text-white">Ankit Shah</h4>
+                    <p class="footer-text">Independent Web Designer & Developer<br>Creating modern digital solutions for businesses.</p>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4 text-white">Explore</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4 text-white">Connect</h5>
+                    <div class="social-links d-flex gap-3 fs-5">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 footer-hr">
+            <p class="text-center footer-text small mb-0">&copy; 2025 Ankit Shah. Made with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById("contactForm");
+        const btnText = document.getElementById("btn-text");
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            btnText.innerHTML = "Sending... <i class='fas fa-spinner fa-spin ms-2'></i>";
+            btnText.disabled = true;
+
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                document.getElementById("form-container").innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                        <h3>Success!</h3>
+                        <p class="text-muted">Thanks for reaching out. I'll get back to you soon.</p>
+                        <button onclick="location.reload()" class="btn btn-link text-primary mt-2">Send another message</button>
+                    </div>`;
+            } else {
+                alert("Something went wrong!");
+                btnText.innerHTML = "Send Message <i class='fas fa-paper-plane ms-2'></i>";
+                btnText.disabled = false;
+            }
+        };
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
